@@ -305,6 +305,8 @@ You can also set all above customizations with following use-package:
 ```emacs-lisp
 (use-package god-mode ; uncomment anything you want to use
   :ensure t
+  :config
+  (require 'god-mode-isearch)
   ;; :custom
   ;; (god-exempt-major-modes nil)
   ;; (god-exempt-predicates nil)
@@ -315,7 +317,7 @@ You can also set all above customizations with following use-package:
          global-map
          ("<escape>" . god-local-mode)
          ;; ("<escape>" . god-mode-all)
-         ;; ("<escape>" . #'(lambda () (interactive) (god-local-mode 1)))
+         ;; ("<escape>" . (lambda () (interactive) (god-local-mode 1)))
          ;; ("i" . god-local-mode)
          ;; ("." . repeat)
          ;; ("C-x C-1" . delete-other-windows)
