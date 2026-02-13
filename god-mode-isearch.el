@@ -6,7 +6,7 @@
 ;; Author: Chris Done <chrisdone@gmail.com>
 ;; URL: https://github.com/emacsorphanage/god-mode
 ;; Version: 2.19.0
-;; Package-Requires: ((emacs "26.3"))
+;; Package-Requires: ((emacs "29"))
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
