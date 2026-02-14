@@ -126,15 +126,15 @@ For example, calling with arguments 5 and t yields the symbol `S-f5'."
 
 (defvar god-local-mode-map
   (let ((map (make-sparse-keymap)))
-	(keymap-set map "<remap> <self-insert-command>" #'god-mode-self-insert)
+    (keymap-set map "<remap> <self-insert-command>" #'god-mode-self-insert)
     (let ((i ?\s))
       (while (< i 256)
         (keymap-set map (single-key-description i) 'god-mode-self-insert)
         (setq i (1+ i))))
     (when god-mode-enable-function-key-translation
       (dotimes (i 35)
-        ((keymap-set map (single-key-description (god-mode-make-f-key (1+ i))) 'god-mode-self-insert)
-        (keymap-set map (single-key-description (god-mode-make-f-key (1+ i) t)) 'god-mode-self-insert))
+        (keymap-set map (single-key-description (god-mode-make-f-key (1+ i))) 'god-mode-self-insert)
+        (keymap-set map (single-key-description (god-mode-make-f-key (1+ i) t)) 'god-mode-self-insert)))
     (keymap-set map "DEL" nil)
     (keymap-set map "C-h k" #'god-mode-describe-key)
     map))
@@ -189,10 +189,10 @@ if ARG is zero or a positive number, or disable the mode if ARG
 is a negative number."
   (interactive)
   (let ((new-status
-	 (cond
-	  ((null arg) (if (bound-and-true-p god-local-mode) -1 1))
-	  ((> 0 arg) -1)
-	  (t 1))))
+         (cond
+          ((null arg) (if (bound-and-true-p god-local-mode) -1 1))
+          ((> 0 arg) -1)
+          (t 1))))
     (setq god-global-mode t)
     (mapc (lambda (buffer)
             (with-current-buffer buffer
