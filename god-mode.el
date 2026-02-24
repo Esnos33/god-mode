@@ -127,17 +127,17 @@ For example, calling with arguments 5 and t yields the symbol `S-f5'."
 (defvar god-local-mode-map
   (let ((map (make-sparse-keymap)))
     (suppress-keymap map t)
-    (define-key map [remap self-insert-command] 'god-mode-self-insert)
+    (keymap-set map "<remap> <self-insert-command>" #'god-mode-self-insert)
     (let ((i ?\s))
       (while (< i 256)
-        (define-key map (vector i) 'god-mode-self-insert)
+        (keymap-set map (single-key-description i) 'god-mode-self-insert)
         (setq i (1+ i))))
     (when god-mode-enable-function-key-translation
       (dotimes (i 35)
-        (define-key map (vector (god-mode-make-f-key (1+ i))) 'god-mode-self-insert)
-        (define-key map (vector (god-mode-make-f-key (1+ i) t)) 'god-mode-self-insert)))
-    (define-key map (kbd "DEL") nil)
-    (define-key map (kbd "C-h k") #'god-mode-describe-key)
+        (keymap-set map (single-key-description (god-mode-make-f-key (1+ i))) 'god-mode-self-insert)
+        (keymap-set map (single-key-description (god-mode-make-f-key (1+ i) t)) 'god-mode-self-insert)))
+    (keymap-set map "DEL" nil)
+    (keymap-set map "C-h k" #'god-mode-describe-key)
     map))
 
 ;;;###autoload
@@ -211,7 +211,7 @@ is a negative number."
           (call-interactively binding)
         (execute-kbd-macro binding)))))
 
-(define-key universal-argument-map (kbd "u")
+(keymap-set universal-argument-map "u"
   #'god-mode-maybe-universal-argument-more)
 
 (defun god-mode-self-insert ()
